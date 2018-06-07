@@ -1,0 +1,21 @@
+name: tournament-manager 
+version: git
+summary: Manage your Tournaments.
+description: |
+  tournament-manager is a command-line tool
+  to manage tournaments with the swiss system.
+
+grade: devel
+confinement: devmode
+
+parts:
+  tournament-manager:
+    source: .
+    source-subdir: src/
+    plugin: python
+    python-version: python3
+
+apps:
+  tournament-manager:
+    command: python3 cli.py
+
