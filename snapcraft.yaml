@@ -10,12 +10,13 @@ confinement: devmode
 
 parts:
   tournament-manager:
-    source: .
+    source: https://github.com/fabianWrede/tournament-manager
+    source-type: git
     source-subdir: src/
     plugin: python
     python-version: python3
 
 apps:
   tournament-manager:
-    command: python3 cli.py
+    command: python3 src/cli.py
 
