@@ -5,58 +5,75 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "show-teams",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/cli.py",
+            "args": [
+                "test",
+                "show-teams"
+            ],
+            "cwd": "${workspaceFolder}/src/",
+            "console": "integratedTerminal"
+        },
+        {
             "name": "show-standings",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/cli.py",
+            "program": "${workspaceFolder}/src/cli.py",
             "args": [
                 "test",
                 "show-standings"
             ],
+            "cwd": "${workspaceFolder}/src/",
             "console": "integratedTerminal"
         },
         {
             "name": "show-round",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/cli.py",
+            "program": "${workspaceFolder}/src/cli.py",
             "args": [
                 "test",
                 "show-round"
             ],
+            "cwd": "${workspaceFolder}/src/",
             "console": "integratedTerminal"
         },
         {
             "name": "revert-round",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/cli.py",
+            "program": "${workspaceFolder}/src/cli.py",
             "args": [
                 "test",
                 "revert-round"
             ],
+            "cwd": "${workspaceFolder}/src/",
             "console": "integratedTerminal"
         },
         {
             "name": "next-round",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/cli.py",
+            "program": "${workspaceFolder}/src/cli.py",
             "args": [
                 "test",
                 "next-round"
             ],
+            "cwd": "${workspaceFolder}/src/",
             "console": "integratedTerminal"
         },
         {
             "name": "stop-tournament",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/cli.py",
+            "program": "${workspaceFolder}/src/cli.py",
             "args": [
                 "test",
                 "stop-tournament"
             ],
+            "cwd": "${workspaceFolder}/src/",
             "console": "integratedTerminal"
         },
         {

@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "start app",
+            "label": "run tests",
             "type": "shell",
-            "command": "python3 cli.py",
+            "command": "pytest",
             "group": {
                 "kind": "build",
                 "isDefault": true
