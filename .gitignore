@@ -1,6 +1,11 @@
 resources/data/*
 
+# snap
 *.snap
+snap/.snapcraft/*
+parts/*
+prime/*
+stage/*
 
 ### languages
 
