@@ -5,8 +5,8 @@ description: |
   tournament-manager is a command-line tool
   to manage tournaments with the swiss system.
 
-grade: devel
-confinement: devmode
+grade: stable
+confinement: strict
 
 parts:
   tournament-manager:
