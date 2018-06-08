@@ -9,12 +9,16 @@ class BaseData:
 
 
 class Tournament(BaseData):
-    def __init__(self, name, teams=[], rounds=[], playoffs=[]):
+    def __init__(self, name, teams=[], rounds=[], playoffs=[],
+                 points_fr_win=13, points_fr_loss=0):
         self.id = name
         self.name = name
         self.teams = teams
         self.rounds = rounds
         self.playoffs = playoffs
+        self.points_fr_win = points_fr_win
+        self.points_fr_loss = points_fr_loss
+        
 
     def is_started(self):
         return len(self.rounds) > 0
@@ -43,16 +47,22 @@ class Tournament(BaseData):
         return None
 
     def encode_json(self):
-        dct = {'_type': self.__class__.__name__, 'name': self.name,
-               'teams': self.teams, 'rounds': self.rounds,
-               'playoffs': self.playoffs}
+        dct = {'_type': self.__class__.__name__,
+               'name': self.name,
+               'teams': self.teams,
+               'rounds': self.rounds,
+               'playoffs': self.playoffs,
+               'points_fr_win': self.points_fr_win,
+               'points_fr_loss': self.points_fr_loss}
         return dct
 
     @classmethod
     def decode_json(cls, dct):
         return Tournament(name=dct.get('name'), teams=dct.get('teams'),
                           rounds=dct.get('rounds'),
-                          playoffs=dct.get('playoffs'))
+                          playoffs=dct.get('playoffs'),
+                          points_fr_win=dct.get('points_fr_win'),
+                          points_fr_loss=dct.get('points_fr_loss'))
 
 
 class Round(BaseData):

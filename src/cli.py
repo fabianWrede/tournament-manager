@@ -20,7 +20,8 @@ def create_tournament(args):
               'tournament name.')
         return
 
-    processes.create_tournament(args.tournament[0])
+    processes.create_tournament(args.tournament[0], args.free_round[0],
+                                args.free_round[1])
 
 
 def add_team(args):
@@ -375,6 +376,12 @@ if __name__ == '__main__':
                                                           'the name given in '
                                                           '"tournament" '
                                                           'argument.')
+    parser_create_tournament.add_argument(
+        '-f', '--free-round', metavar='Points free round', nargs=2,
+        default=[13, 0],
+        help='Points for free rounds. Free rounds count as a win, this '
+             'can be used to set how many points the team and the "free" '
+             'team "scored".')
     parser_create_tournament.set_defaults(func=create_tournament)
 
     # add_team

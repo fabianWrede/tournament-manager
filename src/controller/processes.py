@@ -6,9 +6,10 @@ from controller import swiss_system
 _open_tournament = None
 
 
-def create_tournament(name):
+def create_tournament(name, points_fr_win=13, points_fr_loss=0):
     global _open_tournament
-    _open_tournament = Tournament(name)
+    _open_tournament = Tournament(name=name, points_fr_win=points_fr_win,
+                           points_fr_loss=points_fr_loss)
     save(_open_tournament)
 
 

@@ -101,7 +101,8 @@ def calculate_next_round(tournament):
             for t in reversed(teams):
                 if (t.fl == min_free_rounds):
                     t.fl = t.fl + 1
-                    game = Game(game_id, t, None, 13, 0)
+                    game = Game(game_id, t, None, tournament.points_fr_win,
+                                tournament.points_fr_loss)
                     game_id += 1
                     rnd.games.append(game)
                     teams.remove(t)
@@ -152,14 +153,18 @@ def calculate_next_round(tournament):
                     try:
                         teams.remove(team)
                     except ValueError:
-                        pass                    
+                        pass
+
+        rnd.games += games
+        
     else:   # special case first round
         game_id = 1
         # free round for team in the middle
         if len(teams) % 2 == 1:
             t = teams[len(teams) // 2]
             t.fl = t.fl + 1
-            game = Game(game_id, t, None, 13, 0)
+            game = Game(game_id, t, None, tournament.points_fr_win,
+                        tournament.points_fr_loss)
             game_id += 1
             rnd.games.append(game)
             teams.remove(t)
@@ -173,7 +178,6 @@ def calculate_next_round(tournament):
                            'No match possible in first round.')      
             raise NoMatchError
 
-    rnd.games += games
     tournament.rounds.append(rnd)
 
 
