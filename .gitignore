@@ -1,4 +1,5 @@
 resources/data/*
+src/resources/data/*
 
 # snap
 *.snap
