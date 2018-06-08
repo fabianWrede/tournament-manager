@@ -13,7 +13,7 @@ def get_long_description():
 
 setup(
     name=package_name,
-    version='1.0.2',
+    version='1.0.3',
     author='Fabian Wrede',
     author_email='fabian.wrede@posteo.de',
     packages=find_packages(),
