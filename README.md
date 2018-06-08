@@ -1,5 +1,3 @@
-# The snap does not work at the moment, since it does not find the cli python script. It is a bit strange, since it works if I build it locally, but I will hopefully figure it out :)
-
 # tournament-manager [![Build Status](https://travis-ci.com/fabianWrede/tournament-manager.svg?branch=master)](https://travis-ci.com/fabianWrede/tournament-manager) [![Snap Status](https://build.snapcraft.io/badge/fabianWrede/tournament-manager.svg)](https://build.snapcraft.io/user/fabianWrede/tournament-manager)
 Tool to manage (e-)sports tournaments. It provides a CLI and supports the swiss system.
 
