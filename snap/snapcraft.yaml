@@ -18,5 +18,5 @@ parts:
 
 apps:
   tournament-manager:
-    command: python3 src/cli.py
+    command: python3 cli.py
 
