@@ -348,8 +348,7 @@ def ask_yes_no(msg):
     return s == 'y' or s == 'yes' or s == 'Y' or s == 'Yes' or s == 'YES'
 
 
-# starting point of the cli
-if __name__ == '__main__':
+def create_parser():
     parser = argparse.ArgumentParser(
         description='Manage tournaments with the swiss system.')
 
@@ -491,6 +490,13 @@ if __name__ == '__main__':
                                                     help='Export standings '
                                                          'as pdf.')
     parser_export_standings.set_defaults(func=export_standings)
+
+    return parser
+
+
+# starting point of the cli
+if __name__ == '__main__':
+    parser = create_parser()
 
     args = parser.parse_args()
 
