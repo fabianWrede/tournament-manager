@@ -1,6 +1,6 @@
 name: tournament-manager 
 version: git
-summary: Manage your Tournaments.
+summary: Manage Your Tournaments.
 description: |
   tournament-manager is a command-line tool
   to manage tournaments with the swiss system.
@@ -19,4 +19,3 @@ parts:
 apps:
   tournament-manager:
     command: bin/tournament-manager
-

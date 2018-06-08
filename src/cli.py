@@ -1,10 +1,14 @@
 import argparse
+import sys
 from pathlib import Path
 from operator import attrgetter
+from threading import Thread
+from time import sleep
 
 from controller import processes
 from data import data_connector
 
+_progress_indicator_stopped = True
 
 # sub-command functions
 def create_tournament(args):
@@ -494,8 +498,7 @@ def create_parser():
     return parser
 
 
-# starting point of the cli
-if __name__ == '__main__':
+def main():
     parser = create_parser()
 
     args = parser.parse_args()
@@ -506,3 +509,7 @@ if __name__ == '__main__':
         print('Check the available subcommands in the help (-h) to see what '
               'you can do here.')
         #raise AttributeError
+
+# starting point of the cli
+if __name__ == '__main__':
+    main()
