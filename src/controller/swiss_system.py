@@ -108,6 +108,11 @@ def calculate_next_round(tournament):
                     teams.remove(t)
                     break
 
+        # case if there are no teams...
+        if len(list(teams)) == 0:
+            tournament.rounds.append(rnd)
+            return
+
         # used for fallback if pool matching fails
         teams_without_free_round = list(teams)
         game_id_fallback = game_id
