@@ -12,7 +12,7 @@ _progress_indicator_stopped = True
 
 # sub-command functions
 def create_tournament(args):
-    f = Path(data_connector.get_file_path(args.tournament[0]))
+    f = Path(data_connector._get_file_path(args.tournament[0]))
 
     if f.is_file():
         if not ask_yes_no('Tournament already exists. Do you want to '
@@ -523,14 +523,14 @@ def _check_round_number(round):
 def main():
     parser = create_parser()
 
-    args = parser.parse_args()
+    args = parser.parse_args() 
 
     try:
         args.func(args)
     except AttributeError:
         print('Check the available subcommands in the help (-h) to see what '
               'you can do here.')
-        raise AttributeError
+        #raise AttributeError
 
 # starting point of the cli
 if __name__ == '__main__':

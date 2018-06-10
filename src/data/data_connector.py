@@ -8,12 +8,13 @@ _path = 'tournament-manager/data/'
 _ending = '.json'
 
 
-def get_file_path(file):
-    return os.path.join(str(Path.home()), _path, file + _ending)
+def _get_file_path(filename):
+    path = os.environ.get('SNAP_USER_COMMON', default=str(Path.home()))
+    return os.path.join(path, _path, filename + _ending)
 
 
-def save(data):   
-    f = get_file_path(data.id)
+def save(data):
+    f = _get_file_path(data.id)
     os.makedirs(os.path.dirname(f), exist_ok=True)
 
     with open(f, 'w') as outfile:
@@ -21,6 +22,6 @@ def save(data):
 
 
 def load(id):
-    f = get_file_path(id)
+    f = _get_file_path(id)
     with open(f, 'r') as infile:
         return json.load(fp=infile, object_hook=decode_data_json)

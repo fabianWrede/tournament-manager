@@ -7,6 +7,11 @@ from pathlib import Path
 from data.model import Tournament, Round, Team, Game
 
 _export_path = 'tournament-manager/export/'
+_tex_ending = '.tex'
+
+def _get_export_path(filename, ending=_tex_ending):
+    path = os.environ.get('SNAP_USER_COMMON', default=str(Path.home()))
+    return os.path.join(path, _export_path, filename + ending)
 
 def _load_template():
     template = os.path.relpath('resources/latex/template.tex')
@@ -15,7 +20,7 @@ def _load_template():
 
 
 def _write_export(output_file, content):
-    path = os.path.join(str(Path.home()), _export_path, output_file + '.tex')
+    path = _get_export_path(output_file)
     os.makedirs(os.path.dirname(path), exist_ok=True)
 
     with open(path, 'w') as outfile:
@@ -23,12 +28,12 @@ def _write_export(output_file, content):
 
 
 def _generate_export(file):
-    path = os.path.join(str(Path.home()), _export_path, file + '.tex')
+    path = _get_export_path(file)
     subprocess.run(['pdflatex', '-output-directory', os.path.dirname(path), 
                     '-interaction=nonstopmode', path])
     # remove aux and log
-    aux = os.path.join(str(Path.home()), _export_path, file + '.aux')
-    log = os.path.join(str(Path.home()), _export_path, file + '.log')
+    aux = _get_export_path(file, '.aux')
+    log = _get_export_path(file, '.log')
     os.remove(aux)
     os.remove(log)
 
@@ -85,7 +90,6 @@ def export_standings(tournament):
         p = '$$ ' + str(team.points) + ':' + str(team.points_against) + ' $$'
         pd = str(team.points - team.points_against)
         fr = str(team.fl)
-        pv = str(team.performance_value)
         content += (position + ' & ' + name + ' & ' + matches + ' & ' + wins
                     + ' & ' + losses + ' & ' + bh + ' & ' + fbh + ' & ' + sb
                     + ' & ' + koya + ' & ' + p + ' & ' + pd
