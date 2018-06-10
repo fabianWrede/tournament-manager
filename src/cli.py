@@ -29,7 +29,12 @@ def create_tournament(args):
 
 
 def add_team(args):
-    processes.load_tournament(args.tournament[0])
+    try:
+        processes.load_tournament(args.tournament[0])
+    except FileNotFoundError:
+        print('Could not open the tournament. Have you created the tournament, yet?', 
+              'if not, try the "create-tournament" command.')
+        return
 
     if processes.check_tournament_started():
         print('Tournament already started. It is not possible to add more '
@@ -51,7 +56,12 @@ def add_team(args):
 
 
 def remove_team(args):
-    processes.load_tournament(args.tournament[0])
+    try:
+        processes.load_tournament(args.tournament[0])
+    except FileNotFoundError:
+        print('Could not open the tournament. Have you created the tournament, yet?', 
+              'if not, try the "create-tournament" command.')
+        return
 
     if processes.check_tournament_started():
         print('Tournament has already started. It is not possible to remove '
@@ -64,7 +74,13 @@ def remove_team(args):
 
 
 def show_teams(args):
-    processes.load_tournament(args.tournament[0])
+    try:
+        processes.load_tournament(args.tournament[0])
+    except FileNotFoundError:
+        print('Could not open the tournament. Have you created the tournament, yet?', 
+              'if not, try the "create-tournament" command.')
+        return
+
     teams = processes._open_tournament.teams
 
     max_team_name = 6 
@@ -92,7 +108,12 @@ def show_teams(args):
 
 
 def start_tournament(args):
-    processes.load_tournament(args.tournament[0])
+    try:
+        processes.load_tournament(args.tournament[0])
+    except FileNotFoundError:
+        print('Could not open the tournament. Have you created the tournament, yet?', 
+              'if not, try the "create-tournament" command.')
+        return
 
     # check already started
     if processes.check_tournament_started():
@@ -106,7 +127,12 @@ def start_tournament(args):
 
 
 def stop_tournament(args):
-    processes.load_tournament(args.tournament[0])
+    try:
+        processes.load_tournament(args.tournament[0])
+    except FileNotFoundError:
+        print('Could not open the tournament. Have you created the tournament, yet?', 
+              'if not, try the "create-tournament" command.')
+        return
 
     # check not yet started
     if not processes.check_tournament_started():
@@ -124,7 +150,12 @@ def stop_tournament(args):
 
 
 def next_round(args):
-    processes.load_tournament(args.tournament[0])
+    try:
+        processes.load_tournament(args.tournament[0])
+    except FileNotFoundError:
+        print('Could not open the tournament. Have you created the tournament, yet?', 
+              'if not, try the "create-tournament" command.')
+        return
 
     # check tournament is started
     if not processes.check_tournament_started():
@@ -149,7 +180,12 @@ def next_round(args):
 
 
 def revert_round(args):
-    processes.load_tournament(args.tournament[0])
+    try:
+        processes.load_tournament(args.tournament[0])
+    except FileNotFoundError:
+        print('Could not open the tournament. Have you created the tournament, yet?', 
+              'if not, try the "create-tournament" command.')
+        return
 
     # check tournament is started
     if not processes.check_tournament_started():
@@ -166,7 +202,12 @@ def revert_round(args):
 
 
 def show_round(args):
-    processes.load_tournament(args.tournament[0])
+    try:
+        processes.load_tournament(args.tournament[0])
+    except FileNotFoundError:
+        print('Could not open the tournament. Have you created the tournament, yet?', 
+              'if not, try the "create-tournament" command.')
+        return
 
     # check tournament is started
     if not processes.check_tournament_started():
@@ -208,7 +249,12 @@ def show_round(args):
 
 
 def show_standings(args):
-    processes.load_tournament(args.tournament[0])
+    try:
+        processes.load_tournament(args.tournament[0])
+    except FileNotFoundError:
+        print('Could not open the tournament. Have you created the tournament, yet?', 
+              'if not, try the "create-tournament" command.')
+        return
 
     # check tournament is started
     if not processes.check_tournament_started():
@@ -283,7 +329,12 @@ def show_standings(args):
 
 
 def enter_result(args):
-    processes.load_tournament(args.tournament[0])
+    try:
+        processes.load_tournament(args.tournament[0])
+    except FileNotFoundError:
+        print('Could not open the tournament. Have you created the tournament, yet?', 
+              'if not, try the "create-tournament" command.')
+        return
 
     # Check tournament is started
     if not processes.check_tournament_started():
@@ -331,7 +382,12 @@ def enter_result(args):
 
 
 def export_round(args):
-    processes.load_tournament(args.tournament[0])
+    try:
+        processes.load_tournament(args.tournament[0])
+    except FileNotFoundError:
+        print('Could not open the tournament. Have you created the tournament, yet?', 
+              'if not, try the "create-tournament" command.')
+        return
 
     if not processes.check_tournament_started():
         print('Tournament has not started. Nothing to export.')
@@ -347,7 +403,12 @@ def export_round(args):
 
 
 def export_standings(args):
-    processes.load_tournament(args.tournament[0])
+    try:
+        processes.load_tournament(args.tournament[0])
+    except FileNotFoundError:
+        print('Could not open the tournament. Have you created the tournament, yet?', 
+              'if not, try the "create-tournament" command.')
+        return
     
     if not processes.check_tournament_started():
         print('Tournament has not started. Nothing to export.')
@@ -528,7 +589,7 @@ def main():
     try:
         args.func(args)
     except AttributeError:
-        print('Check the available subcommands in the help (-h) to see what '
+        print('Check the help (-h) to see what '
               'you can do here.')
         #raise AttributeError
 
