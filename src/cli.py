@@ -69,7 +69,11 @@ def remove_team(args):
         processes.close_tournament()
         return
 
-    processes.remove_team(args.name[0])
+    try:
+        processes.remove_team(args.name[0])
+    except ValueError:
+        print('The team you wanted to remove has not been added to the tournament.')
+
     processes.close_tournament()
 
 
