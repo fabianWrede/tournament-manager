@@ -2,10 +2,11 @@ import os
 import subprocess
 from string import Template
 from operator import attrgetter
+from pathlib import Path
 
 from data.model import Tournament, Round, Team, Game
 
-_export_path = os.path.relpath('resources/export/')
+_export_path = 'tournament-manager/export/'
 
 def _load_template():
     template = os.path.relpath('resources/latex/template.tex')
@@ -14,18 +15,20 @@ def _load_template():
 
 
 def _write_export(output_file, content):
-    os.makedirs(_export_path, exist_ok=True)
+    path = os.path.join(str(Path.home()), _export_path, output_file + '.tex')
+    os.makedirs(os.path.dirname(path), exist_ok=True)
 
-    with open(output_file + '.tex', 'w') as outfile:
+    with open(path, 'w') as outfile:
         outfile.write(content)
 
 
 def _generate_export(file):
-    subprocess.run(['pdflatex', '-output-directory', _export_path, 
-                    '-interaction=nonstopmode', file + '.tex'])
+    path = os.path.join(str(Path.home()), _export_path, file + '.tex')
+    subprocess.run(['pdflatex', '-output-directory', os.path.dirname(path), 
+                    '-interaction=nonstopmode', path])
     # remove aux and log
-    aux = os.path.relpath(file + '.aux')
-    log = os.path.relpath(file + '.log')
+    aux = os.path.join(str(Path.home()), _export_path, file + '.aux')
+    log = os.path.join(str(Path.home()), _export_path, file + '.log')
     os.remove(aux)
     os.remove(log)
 
@@ -55,8 +58,7 @@ def export_round(tournament, round):
                                tablecolumns=columns, 
                                tableheader=header,
                                tablecontent=content)
-    file_name = os.path.relpath(_export_path + '/' + tournament.name + '-r' 
-                                + str(round + 1))
+    file_name = os.path.relpath(tournament.name + '-r' + str(round + 1))
     _write_export(file_name, substituted_template)
     _generate_export(file_name)
 
@@ -98,7 +100,6 @@ def export_standings(tournament):
                                tablecolumns=columns, 
                                tableheader=header,
                                tablecontent=content)
-    file_name = os.path.relpath(_export_path + '/' + tournament.name
-                                + '-standings')
+    file_name = os.path.relpath(tournament.name + '-standings')
     _write_export(file_name, substituted_template)
     _generate_export(file_name)

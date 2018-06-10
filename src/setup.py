@@ -18,6 +18,7 @@ setup(
     author_email='fabian.wrede@posteo.de',
     packages=find_packages(),
     py_modules=['cli'],
+    data_files=[('resources/latex', ['resources/latex/template.tex'])],
     description='Manage tournaments with the swiss system on the command line.',
     url='https://github.com/fabianWrede/tournament-manager',
     long_description=get_long_description(),

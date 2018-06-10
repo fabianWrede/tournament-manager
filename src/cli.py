@@ -332,6 +332,12 @@ def enter_result(args):
 
 def export_round(args):
     processes.load_tournament(args.tournament[0])
+
+    if not processes.check_tournament_started():
+        print('Tournament has not started. Nothing to export.')
+        processes.close_tournament()
+        return
+
     # check round number, and use latest round if none is given
     round_number = _check_round_number(args.round[0])
     # create latex file and build it with pdflatex
@@ -343,6 +349,11 @@ def export_round(args):
 def export_standings(args):
     processes.load_tournament(args.tournament[0])
     
+    if not processes.check_tournament_started():
+        print('Tournament has not started. Nothing to export.')
+        processes.close_tournament()
+        return
+
     # update standings and export them
     processes.calculate_standings()
     processes.export_standings()
