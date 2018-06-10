@@ -2,6 +2,7 @@ from data.model import Tournament, Team
 from data.data_connector import save, load
 from controller import swiss_system
 from controller import export
+from controller.errors import NoTeamsError
 
 
 _open_tournament = None
@@ -43,6 +44,8 @@ def remove_team(team=None, name=''):
 
 def start_tournament():
     if _open_tournament is not None and not _open_tournament.is_started():
+        if len(_open_tournament.teams) == 0:
+            raise NoTeamsError
         swiss_system.check_and_fix_initial_performance_values(_open_tournament)
         swiss_system.calculate_next_round(_open_tournament)
 

@@ -6,6 +6,7 @@ from threading import Thread
 from time import sleep
 
 from controller import processes
+from controller.errors import NoTeamsError
 from data import data_connector
 
 _progress_indicator_stopped = True
@@ -126,7 +127,11 @@ def start_tournament(args):
         return
 
     # check performance values of teams and assign random values
-    processes.start_tournament()
+    try:
+        processes.start_tournament()
+    except NoTeamsError:
+        print('There are no teams in this tournament. Use the "add-team" command.')
+
     processes.close_tournament()
 
 
