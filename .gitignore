@@ -1,5 +1,7 @@
 resources/data/*
 src/resources/data/*
+resources/export/*
+src/resources/export/*
 
 # snap
 *.snap

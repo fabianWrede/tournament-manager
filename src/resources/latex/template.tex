@@ -1,0 +1,29 @@
+\documentclass[14pt, paper=a4]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\usepackage{booktabs}
+\usepackage{ltablex}
+
+\title{${title}}
+\subtitle{${subtitle}}
+\date{}
+
+\begin{document}
+	\pagestyle{empty}
+	\maketitle
+	\thispagestyle{empty}
+	\centering
+	\begin{tabularx}{\linewidth}{${tablecolumns}}
+		\toprule
+		${tableheader}
+		\midrule
+		%\endhead
+		${tablecontent}
+		\bottomrule
+	\end{tabularx}
+\end{document}

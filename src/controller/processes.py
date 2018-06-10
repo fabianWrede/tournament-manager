@@ -1,6 +1,7 @@
 from data.model import Tournament, Team
 from data.data_connector import save, load
 from controller import swiss_system
+from controller import export
 
 
 _open_tournament = None
@@ -68,6 +69,18 @@ def calculate_standings():
 
 def calculate_next_round():
     swiss_system.calculate_next_round(_open_tournament)
+
+
+# export 
+def export_round(round_number):
+    if _open_tournament is not None:
+        export.export_round(_open_tournament, round_number)
+
+
+# export 
+def export_standings():
+    if _open_tournament is not None:
+        export.export_standings(_open_tournament)
 
 
 # some status checks

@@ -176,11 +176,7 @@ def show_round(args):
         return
 
     # check round number, and use latest round if none or invalid is given
-    round_number = args.round[0] - 1
-    if round_number < 0 or round_number >= len(
-            processes._open_tournament.rounds):
-        round_number = len(processes._open_tournament.rounds) - 1
-
+    round_number = _check_round_number(args.round[0])
 
     teams = processes._open_tournament.teams
     max_team_name = 6 if max([len(t.name) for t in teams]) + 2 < 6 else max(
@@ -335,16 +331,23 @@ def enter_result(args):
 
 
 def export_round(args):
-    # check tournament is started
+    processes.load_tournament(args.tournament[0])
     # check round number, and use latest round if none is given
+    round_number = _check_round_number(args.round[0])
     # create latex file and build it with pdflatex
-    print("This command is not implemented, yet.")
+    processes.export_round(round_number)
+
+    processes.close_tournament()
 
 
 def export_standings(args):
-    # check tournament is started
-    # create latex file and build it with pdflatex
-    print("This command is not implemented, yet.")
+    processes.load_tournament(args.tournament[0])
+    
+    # update standings and export them
+    processes.calculate_standings()
+    processes.export_standings()
+
+    processes.close_tournament()
 
 
 def ask_yes_no(msg):
@@ -482,7 +485,7 @@ def create_parser():
                                                 aliases=['exr'],
                                                 help='Export round as pdf.')
     parser_export_round.add_argument('-r', '--round', metavar='Round', nargs=1,
-                                     default=0, type=int,
+                                     default=[-1], type=int,
                                      help='Round to export. If not '
                                           'specified, current round is '
                                           'chosen.')
@@ -497,7 +500,15 @@ def create_parser():
 
     return parser
 
+# cli checks
+def _check_round_number(round):
+    round_number = round - 1
+    if round_number < 0 or round_number >= len(
+            processes._open_tournament.rounds):
+        return len(processes._open_tournament.rounds) - 1
+    return round_number
 
+# main function for setup.py
 def main():
     parser = create_parser()
 
@@ -508,7 +519,7 @@ def main():
     except AttributeError:
         print('Check the available subcommands in the help (-h) to see what '
               'you can do here.')
-        #raise AttributeError
+        raise AttributeError
 
 # starting point of the cli
 if __name__ == '__main__':
