@@ -9,14 +9,18 @@ grade: stable
 confinement: strict
 
 parts:
+  texlive:
+    plugin: texlive
+    source: http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+    build-packages:
+      - wget
+
   tournament-manager:
     source: https://github.com/fabianWrede/tournament-manager
     source-type: git
     source-subdir: src/
     plugin: python
     python-version: python3
-    stage-packages:
-      - texlive
 
 apps:
   tournament-manager:
