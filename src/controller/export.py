@@ -6,11 +6,12 @@ from pathlib import Path
 
 from data.model import Tournament, Round, Team, Game
 
-_export_path = 'tournament-manager/export/'
+_export_path = 'export/'
 _tex_ending = '.tex'
 
 def _get_export_path(filename, ending=_tex_ending):
-    path = os.environ.get('SNAP_USER_COMMON', default=str(Path.home()))
+    path = os.environ.get('SNAP_USER_COMMON',
+               default=str(Path.home()) + 'tournament-manager/')
     return os.path.join(path, _export_path, filename + ending)
 
 def _load_template():
