@@ -13,7 +13,6 @@ parts:
     source: https://github.com/fabianWrede/tournament-manager
     source-type: git
     source-subdir: src/
-    source-tag: v1.0.3
     plugin: python
     python-version: python3
 
