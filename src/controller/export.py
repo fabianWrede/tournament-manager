@@ -19,8 +19,6 @@ def _get_export_path(filename, ending=_tex_ending):
         return os.path.join(path, _base, _export_path, filename + ending)
 
 
-    return os.path.join(path, _export_path, filename + ending)
-
 def _load_template():
     path = os.environ.get('SNAP', default='')
     template = os.path.join(path, 'resources', 'latex', 'template.tex')
