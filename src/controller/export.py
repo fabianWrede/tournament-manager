@@ -36,7 +36,14 @@ def _write_export(output_file, content):
 
 def _generate_export(file):
     path = _get_export_path(file)
-    subprocess.run(['pdflatex', '-output-directory', os.path.dirname(path), 
+
+    if 'SNAP' in os.environ:
+        pdflatex = os.path.join(os.environ.get('SNAP'), 'texlive', 'bin', 
+                                    'x86_64-linux', 'pdflatex') 
+        subprocess.run([pdflatex, '-output-directory', os.path.dirname(path), 
+                    '-interaction=nonstopmode', path])
+    else:        
+        subprocess.run(['pdflatex', '-output-directory', os.path.dirname(path), 
                     '-interaction=nonstopmode', path])
     # remove aux and log
     aux = _get_export_path(file, '.aux')

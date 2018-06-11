@@ -21,5 +21,5 @@ class TexLivePlugin(snapcraft.plugins.dump.DumpPlugin):
 
     def _build_environment(self):
         env = os.environ.copy()
-        env['TEXLIVE_INSTALL_PREFIX'] = os.path.join(self.installdir, 'usr', 'local')
+        env['TEXLIVE_INSTALL_PREFIX'] = os.path.join(self.installdir, 'texlive')
         return env
