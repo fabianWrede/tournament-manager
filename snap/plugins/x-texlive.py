@@ -3,6 +3,7 @@
 import os
 from subprocess import Popen, PIPE
 
+# pylint: disable=E0401
 import snapcraft
 from snapcraft.plugins import dump
 
