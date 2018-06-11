@@ -8,7 +8,7 @@ from subprocess import Popen, PIPE
 import snapcraft
 from snapcraft.plugins import dump
 
-extras = ["koma-script", "lmodern", "microtype", "booktabs", "ltablex"]
+extras = ["koma-script", "lm", "microtype", "booktabs", "ltablex"]
 
 class TexLivePlugin(snapcraft.plugins.dump.DumpPlugin):
 
