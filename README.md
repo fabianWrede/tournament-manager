@@ -42,8 +42,8 @@ for example, you want to print a round so that all participants in a tournament 
 Consequently, if you don't have `pdflatex` installed, the export won't work. On Ubuntu the probably easiest way to install Latex is
 `sudo apt install texlive-full` or `sudo apt install texlive texlive-latex-extra`.
 
-The commands for the export are `export-round` and `export-standings` and the output PDFs will be in the folder
-`resources/export/`.
+The commands for the export are `export-round` and `export-standings` and if you have installed it as a snap, the output PDFs will be in the folder
+`~/snap/tournament-manager/common/export/`.
 
 
 ## FAQ
