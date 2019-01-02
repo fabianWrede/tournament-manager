@@ -1,6 +1,3 @@
-# https://github.com/ubuntu/snappy-playpen/blob/master/texworks/parts/plugins/x-texlive.py
-# https://github.com/otfried/ipe-tools/blob/master/snap/snap/plugins/x-texlive.py
-
 import os
 from subprocess import Popen, PIPE
 
